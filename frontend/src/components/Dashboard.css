@@ -3,19 +3,44 @@
 .dashboard-container {
   display: flex;
   height: 100vh;
-  background-color: #fff; /* Main background is white */
-  color: #333; /* Default text color */
+  background-color: #fff;
+  color: #333;
 }
 
 /* Sidebar styling */
 .sidebar {
   width: 200px;
-  background-color: orange; /* Orange sidebar */
-  padding: 30px 20px;
+  background-color: orange;
+  padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   color: white;
 }
 
+/* Sidebar header with logo and profile image */
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.site-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.site-name .red {
+  color: red;
+}
+
+/* Profile image */
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+/* Sidebar links */
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -39,13 +64,13 @@
 }
 
 .sidebar ul li a:hover {
-  color: #ffe5b4; /* Light orange hover */
+  color: #ffe5b4;
 }
 
 /* Main content styling */
 .dashboard-main {
   flex: 1;
   padding: 40px;
-  background-color: #fff; /* White content background */
-  color: #333; /* Dark text for readability */
+  background-color: #fff;
+  color: #333;
 }
