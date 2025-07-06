@@ -16,7 +16,6 @@
   color: white;
 }
 
-/* Sidebar header with logo and profile image */
 .sidebar-header {
   text-align: center;
   margin-bottom: 30px;
@@ -31,7 +30,6 @@
   color: red;
 }
 
-/* Profile image */
 .profile-image {
   width: 60px;
   height: 60px;
@@ -67,10 +65,38 @@
   color: #ffe5b4;
 }
 
-/* Main content styling */
+/* Main content area */
 .dashboard-main {
   flex: 1;
   padding: 40px;
   background-color: #fff;
   color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topbar with search */
+.dashboard-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 300px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-bar:focus {
+  border-color: orange;
+}
+
+/* Content area inside dashboard */
+.dashboard-content {
+  flex: 1;
 }

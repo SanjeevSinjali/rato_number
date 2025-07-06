@@ -2,7 +2,7 @@
 import React from 'react';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
-import ProfilePic from '../assets/profile.jpg'; // ✅ Make sure this path is correct
+import ProfilePic from '../assets/profile.jpg'; // ✅ Make sure the image path is correct
 
 const Dashboard = () => {
   return (
@@ -20,8 +20,18 @@ const Dashboard = () => {
       </aside>
 
       <main className="dashboard-main">
-        <h2>Welcome to your Dashboard!</h2>
-        <p>This is where you can manage your bookings and profile.</p>
+        <div className="dashboard-topbar">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="search-bar"
+          />
+        </div>
+
+        <div className="dashboard-content">
+          <h2>Welcome to your Dashboard!</h2>
+          <p>This is where you can manage your bookings and profile.</p>
+        </div>
       </main>
     </div>
   );
