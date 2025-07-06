@@ -24,10 +24,7 @@
 .site-name {
   font-size: 18px;
   margin-bottom: 10px;
-}
-
-.site-name .red {
-  color: red;
+  color: red; /* Entire "RatoNumber" in red */
 }
 
 .profile-image {
