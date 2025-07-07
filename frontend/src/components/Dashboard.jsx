@@ -14,6 +14,7 @@ const Dashboard = () => {
         </div>
         <ul>
           <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/vehicles">Vehicles</Link></li> {/* 👈 New Link Added */}
           <li><Link to="/profile">My Profile</Link></li>
           <li><Link to="/logout">Sign Out</Link></li>
         </ul>
