@@ -1,3 +1,4 @@
+/* Header styling */
 .header {
   display: flex;
   justify-content: space-between;
@@ -46,6 +47,7 @@
   background-color: #e05312;
 }
 
+/* Hero section */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('assets/CarHomePage.jpg') no-repeat center center/cover;
@@ -73,6 +75,7 @@
   opacity: 0.9;
 }
 
+/* Booking section */
 .booking-section {
   background-color: white;
   padding: 40px;
@@ -116,6 +119,7 @@
   font-size: 1rem;
 }
 
+/* Features section */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -150,6 +154,7 @@
   color: #666;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.5rem;
@@ -163,4 +168,51 @@
   .nav-links {
     gap: 15px;
   }
+}
+
+/* === Modal Styles for Sign Out Confirmation === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.yes-button,
+.no-button {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.yes-button {
+  background-color: orange;
+  color: white;
+}
+
+.no-button {
+  background-color: #ccc;
+  color: black;
 }
