@@ -1,10 +1,19 @@
+/* Wrapper to center the profile-container vertically and horizontally */
+.profile-wrapper {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center;     /* Vertical center */
+  background-color: #f0f0f0; /* Optional background color */
+}
+
 .profile-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px;
   max-width: 1000px;
-  margin: auto;
+  width: 90%; /* Responsive width */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
