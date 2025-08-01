@@ -20,17 +20,9 @@ const columns = [
 ];
 
 const RentedCarsTable = ({ cars }) => {
-  const rentedCars = cars
-    .filter((car) => car.status === "RENTED")
-    .map((car, index) => ({
-      ...car,
-      rentalDate: "2025-08-01",
-      returnDate: "2025-08-02",
-      id: index + 1,
-    }));
 
   const table = useReactTable({
-    data: rentedCars,
+    data: cars,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

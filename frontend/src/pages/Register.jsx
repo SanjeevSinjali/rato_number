@@ -20,6 +20,7 @@ const Register = () => {
       alert('Passwords do not match');
       return;
     }
+    console.log(formData)
     try {
       register(formData)
       navigate("/login")
@@ -27,6 +28,7 @@ const Register = () => {
     }
     catch (e) {
       console.log(e)
+      toast.error("Error while registering!!")
     }
   };
 

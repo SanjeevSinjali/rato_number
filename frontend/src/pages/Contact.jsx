@@ -20,6 +20,7 @@ const Contact = () => {
       toast.warning("Empty Fields!");
       return false;
     }
+    toast.success("Sent successfully!!")
 
   };
 

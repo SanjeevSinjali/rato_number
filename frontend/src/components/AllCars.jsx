@@ -45,10 +45,8 @@ const columns = [
 ];
 
 const CarTable = ({ cars }) => {
-  const [data, setData] = useState(cars);
-
   const table = useReactTable({
-    data,
+    data: cars,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -63,13 +61,11 @@ const CarTable = ({ cars }) => {
       fuel: "Petrol",
       status: "AVAILABLE",
     };
-    setData((prevData) => [...prevData, newCar]);
   };
 
   return (
     <div className="p-4">
       <button
-        onClick={handleAddCar}
         className="mb-4 bg-[#009689] hover:bg-[#007d74] text-white font-bold py-2 px-4 rounded"
       >
         Add Car

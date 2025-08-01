@@ -8,7 +8,8 @@ import { useAuth } from "../lib/auth.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const { logout } = useAuth()
+  const { user, logout } = useAuth()
+  console.log(user)
   const navigate = useNavigate()
   const [activetab, setActiveTab] = useState("Dashboard");
 
@@ -17,6 +18,7 @@ const Admin = () => {
     { name: "Cars" },
     { name: "Order" },
   ];
+
   return (
     <div className="flex h-screen">
       <aside className="flex h-screen w-64 flex-col justify-between border-e border-gray-200 bg-white">
@@ -67,12 +69,12 @@ const Admin = () => {
             >
               <img
                 alt="Profile"
-                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&w=1770&q=80"
+                src="https://notion-avatar.app/api/svg/eyJmYWNlIjoxNCwibm9zZSI6NSwibW91dGgiOjExLCJleWVzIjowLCJleWVicm93cyI6MywiZ2xhc3NlcyI6OCwiaGFpciI6MTcsImFjY2Vzc29yaWVzIjowLCJkZXRhaWxzIjowLCJiZWFyZCI6MCwiZmxpcCI6MCwiY29sb3IiOiJyZ2JhKDI1NSwgMCwgMCwgMCkiLCJzaGFwZSI6Im5vbmUifQ=="
                 className="h-10 w-10 rounded-full object-cover"
               />
               <div className="text-sm">
-                <p className="font-medium text-gray-900">admindai</p>
-                <p className="text-xs text-gray-500">admin@gmail.com</p>
+                <p className="font-medium text-gray-900">{user.fullName}</p>
+                <p className="text-xs text-gray-500">{user.email}</p>
               </div>
             </a>
           </div>

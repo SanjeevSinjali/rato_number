@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-table": "^8.21.3",
     "axios": "^1.10.0",
+    "dayjs": "^1.11.13",
     "lucide-react": "^0.535.0",
     "react": "^19.1.0",
     "react-data-table-component": "^7.7.0",

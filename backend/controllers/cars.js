@@ -27,8 +27,15 @@ exports.getCar = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/cars
 // @access    Private (admin)
 exports.createCar = asyncHandler(async (req, res, next) => {
-  const car = await Car.create(req.body);
+  let carData = req.body;
+
+  if (req.file) {
+    carData.image = `/images/${req.file.filename}`;
+  }
+
+  const car = await Car.create(carData);
   res.status(201).json({ success: true, data: car });
+
 });
 
 // @desc      Update car

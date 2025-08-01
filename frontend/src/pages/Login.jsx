@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useAuth()
@@ -20,8 +21,11 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(formData);
+      toast.success("Successfully logged in!!")
+
     } catch (err) {
       console.error(`Error occured at login: ${err.response?.data.error}`)
+      toast.error(err.response?.data.error)
     }
   };
 

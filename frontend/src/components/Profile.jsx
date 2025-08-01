@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import illustration from '../assets/profileresetillu.jpg'; // ensure this exists
+import illustration from '../assets/profileresetillu.jpg';
+import { api } from "../lib/api-client";
+import { toast } from 'react-toastify';
 
-const Profile = () => {
+const Profile = ({ user, setUser }) => {
   const {
     register,
     handleSubmit,
@@ -10,16 +12,24 @@ const Profile = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: '',
-      email: '',
-      contactNumber: '',
+      fullName: user.fullName,
+      email: user.email,
+      contactNumber: user.contactNumber,
       password: '',
       confirmPassword: '',
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log('Form Submitted:', data);
+    try {
+      const res = await api.put(`/users/${user.id}`, data)
+      setUser(res.data)
+      toast.success("User updated successfully !!")
+    } catch (e) {
+      console.log(e)
+      toast.error("Error updating user!!!")
+    }
   };
 
   return (
@@ -106,13 +116,6 @@ const Profile = () => {
                 className="bg-[#009689] hover:bg-[#007e73] text-white font-semibold py-3 rounded-md transition flex-1"
               >
                 Save Profile
-              </button>
-              <button
-                type="button"
-                onClick={() => reset()}
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-md transition flex-1"
-              >
-                Reset Profile
               </button>
             </div>
           </form>

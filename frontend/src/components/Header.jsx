@@ -43,7 +43,7 @@ const Header = () => {
           {user ? (
             <div className="relative">
               <img
-                src={user.avatarUrl || 'https://i.pravatar.cc/100'}
+                src={user.avatarUrl || 'https://notion-avatar.app/api/svg/eyJmYWNlIjoxNCwibm9zZSI6NSwibW91dGgiOjExLCJleWVzIjowLCJleWVicm93cyI6MywiZ2xhc3NlcyI6OCwiaGFpciI6MTcsImFjY2Vzc29yaWVzIjowLCJkZXRhaWxzIjowLCJiZWFyZCI6MCwiZmxpcCI6MCwiY29sb3IiOiJyZ2JhKDI1NSwgMCwgMCwgMCkiLCJzaGFwZSI6Im5vbmUifQ=='}
                 alt="Profile"
                 className="h-10 w-10 rounded-full cursor-pointer"
                 onClick={handleToggle}
@@ -63,7 +63,7 @@ const Header = () => {
                     </li>
                     <li>
                       <Link
-                        to="/rented-cars"
+                        to="/myrents"
                         className="block px-4 py-2 hover:bg-gray-100"
                         onClick={() => setDropdownOpen(false)}
                       >

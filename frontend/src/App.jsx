@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { useAuth } from './lib/auth.jsx';
 import { USER_TYPES } from './utils/users.js';
+import RentedCars from './components/RentedCars.jsx';
 
 // Lazy loaded components
 const Homepage = lazy(() => import('./pages/Home'));
@@ -46,7 +47,7 @@ const Layout = ({ children }) => {
 };
 
 function App() {
-  const { user, loading } = useAuth();
+  const { user, loading, setUser } = useAuth();
   const userType = user?.role || USER_TYPES.CUSTOMER;
 
   if (loading) {
@@ -71,6 +72,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/vehicles" element={<CarModel />} />
 
             {/* Protected customer routes */}
             <Route
@@ -85,15 +87,16 @@ function App() {
               path="/profile"
               element={
                 <ProtectedRoute user={user} userType={userType}>
-                  <Profile />
+                  <Profile user={user} setUser={setUser} />
                 </ProtectedRoute>
               }
             />
+
             <Route
-              path="/vehicles"
+              path="/myrents"
               element={
                 <ProtectedRoute user={user} userType={userType}>
-                  <CarModel />
+                  <RentedCars user={user} setUser={setUser} />
                 </ProtectedRoute>
               }
             />

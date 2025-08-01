@@ -23,12 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-
     status: {
-      type: DataTypes.ENUM('PENDING', 'CONFIRMED', 'CANCELLED', 'RETURNED'),
-      defaultValue: 'PENDING',
+      type: DataTypes.ENUM('RENTED', 'AVAILABLE'),
+      defaultValue: 'AVAILABLE',
     },
-
     rentStartDate: {
       type: DataTypes.DATE,
       allowNull: false,

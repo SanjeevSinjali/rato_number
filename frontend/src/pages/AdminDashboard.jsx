@@ -1,101 +1,130 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RentedCarsTable from '../components/RentedCarsTable';
+import { toast } from 'react-toastify';
+import { api } from '../lib/api-client';
+import CarOrderPage from '../components/CarOrder';
 
-const dummyData = [
-  {
-    id: 1,
-    title: "Total Rented",
-    value: 15,
-    percent: 67.81,
-    isIncrease: true,
-  },
-  {
-    id: 2,
-    title: "Total Profit",
-    value: "Rs. 67296",
-    percent: 12.34,
-    isIncrease: true,
-  },
-];
+// const dummyData = [
+//   {
+//     id: 1,
+//     title: "Total Rented",
+//     value: 15,
+//     percent: 67.81,
+//     isIncrease: true,
+//   },
+//   {
+//     id: 2,
+//     title: "Total Profit",
+//     value: "Rs. 67296",
+//     percent: 12.34,
+//     isIncrease: true,
+//   },
+// ];
 
-const rented_cars = [
-  {
-    name: "Thar",
-    brand: "Mahindra",
-    price: "₹22,999",
-    transmission: "Manual",
-    fuel: "Diesel",
-    seats: 4,
-    rentalDate: "2025-08-01",
-    returnDate: "2025-08-02",
-    status: "RENTED",
-  },
-  {
-    name: "Nexon EV",
-    brand: "Tata",
-    price: "₹15,499",
-    transmission: "Automatic",
-    seats: 5,
-    fuel: "Electric",
-    rentalDate: "2025-07-15",
-    returnDate: "2025-07-19",
-    status: "RENTED",
-  },
-  {
-    name: "Brezza",
-    brand: "Maruti Suzuki",
-    price: "₹18,499",
-    transmission: "Manual",
-    seats: 5,
-    fuel: "Petrol",
-    rentalDate: "2025-07-10",
-    returnDate: "2025-07-17",
-    status: "RENTED",
-  },
-  {
-    name: "Creta",
-    brand: "Hyundai",
-    price: "₹10,299",
-    transmission: "Manual",
-    seats: 5,
-    fuel: "Diesel",
-    rentalDate: "2025-07-12",
-    returnDate: "2025-07-20",
-    status: "RENTED",
-  },
-  {
-    name: "GLK",
-    brand: "Mercedes-Benz",
-    price: "₹36,599",
-    transmission: "Automatic",
-    seats: 5,
-    fuel: "Diesel",
-    rentalDate: null,
-    returnDate: null,
-    status: "AVAILABLE",
-  },
-  {
-    name: "Swift",
-    brand: "Maruti Suzuki",
-    price: "₹1,599",
-    transmission: "Manual",
-    seats: 5,
-    fuel: "Petrol",
-    rentalDate: null,
-    returnDate: null,
-    status: "AVAILABLE",
-  },
-];
+// const rented_cars = [
+//   {
+//     name: "Thar",
+//     brand: "Mahindra",
+//     price: "₹22,999",
+//     transmission: "Manual",
+//     fuel: "Diesel",
+//     seats: 4,
+//     rentalDate: "2025-08-01",
+//     returnDate: "2025-08-02",
+//     status: "RENTED",
+//   },
+//   {
+//     name: "Nexon EV",
+//     brand: "Tata",
+//     price: "₹15,499",
+//     transmission: "Automatic",
+//     seats: 5,
+//     fuel: "Electric",
+//     rentalDate: "2025-07-15",
+//     returnDate: "2025-07-19",
+//     status: "RENTED",
+//   },
+//   {
+//     name: "Brezza",
+//     brand: "Maruti Suzuki",
+//     price: "₹18,499",
+//     transmission: "Manual",
+//     seats: 5,
+//     fuel: "Petrol",
+//     rentalDate: "2025-07-10",
+//     returnDate: "2025-07-17",
+//     status: "RENTED",
+//   },
+//   {
+//     name: "Creta",
+//     brand: "Hyundai",
+//     price: "₹10,299",
+//     transmission: "Manual",
+//     seats: 5,
+//     fuel: "Diesel",
+//     rentalDate: "2025-07-12",
+//     returnDate: "2025-07-20",
+//     status: "RENTED",
+//   },
+//   {
+//     name: "GLK",
+//     brand: "Mercedes-Benz",
+//     price: "₹36,599",
+//     transmission: "Automatic",
+//     seats: 5,
+//     fuel: "Diesel",
+//     rentalDate: null,
+//     returnDate: null,
+//     status: "AVAILABLE",
+//   },
+//   {
+//     name: "Swift",
+//     brand: "Maruti Suzuki",
+//     price: "₹1,599",
+//     transmission: "Manual",
+//     seats: 5,
+//     fuel: "Petrol",
+//     rentalDate: null,
+//     returnDate: null,
+//     status: "AVAILABLE",
+//   },
+// ];
 
 
 const AdminDashboard = () => {
-  const [stats, setStats] = useState(dummyData);
+  const [stats, setStats] = useState([]);
+  const [recentRentCar, setRecentRentCar] = useState([]);
+  useEffect(() => {
+
+    const fetchStats = async () => {
+      try {
+        const res = await api.get("/stats");
+        setStats(res.data)
+        console.log("fetchStats :", res.data)
+      } catch (e) {
+        console.log("fetchStats err :", e)
+        toast.error("Error fetching stats!!!")
+      }
+    }
+    const fetchRecentCars = async () => {
+      try {
+
+        const res = await api.get("/rent/rentedAll");
+        console.log(res.data)
+        setRecentRentCar(res.data)
+      } catch (e) {
+        console.log("Error :", e)
+      }
+    }
+    fetchRecentCars()
+    fetchStats()
+  }, [])
 
   return (
     <div className="flex  flex-col w-full gap-4">
 
       <div className="flex w-full gap-4">
-        {stats.map(({ id, title, value, percent, isIncrease }) => {
+        {stats && stats.map(({ id, title, value, percent, isIncrease }) => {
           const percentColor = isIncrease ? "text-green-600" : "text-red-600";
           const bgColor = isIncrease ? "bg-green-100" : "bg-red-100";
           const iconPath = isIncrease
@@ -134,7 +163,8 @@ const AdminDashboard = () => {
         })}
       </div>
 
-      <RentedCarsTable cars={rented_cars} />
+      {/* <RentedCarsTable cars={recentRentCar} /> */}
+      <CarOrderPage cars={recentRentCar} />
     </div >
   );
 };

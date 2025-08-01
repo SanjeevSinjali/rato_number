@@ -68,3 +68,41 @@ exports.deleteOrderCar = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: {} });
 });
 
+
+exports.getRentedCars = asyncHandler(async (req, res, next) => {
+  try {
+    // Find all orders where status is RENTED
+    const rentedOrders = await OrderCar.findAll({
+      where: {
+        status: 'RENTED',
+      },
+      include: [
+        {
+          model: Car,
+          as: 'car',
+          attributes: ['name', 'price'],
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['fullName'],
+        },
+      ],
+    });
+
+    // Map to the desired response format
+    const response = rentedOrders.map(order => ({
+      id: order.id,
+      name: order.car.name,
+      totalPrice: parseFloat(order.totalPrice),
+      bookedBy: order.user.fullName,
+      rentStartDate: order.rentStartDate,
+      rentEndDate: order.rentEndDate,
+    }));
+
+    res.json({ success: true, data: response });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+})

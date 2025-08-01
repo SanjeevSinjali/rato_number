@@ -4,7 +4,8 @@ const {
   getOrderCar,
   createOrderCar,
   updateOrderCar,
-  deleteOrderCar
+  deleteOrderCar,
+  getRentedCars
 } = require('../controllers/OrderCar');
 const { protect } = require('../middleware/auth');
 
@@ -13,6 +14,8 @@ const router = express.Router();
 router.route('/')
   .get(protect, getOrderCars)
   .post(protect, createOrderCar);
+
+router.route('/rentedAll').get(protect, getRentedCars)
 
 router.route('/:id')
   .get(protect, getOrderCar)
