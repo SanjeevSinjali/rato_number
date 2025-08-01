@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Thar",
+    "brand": "Mahindra",
+    "price": "₹22,999",
+    "seats": 4,
+    "transmission": "Manual",
+    "fuel": "Diesel",
+    "status": "RENTED",
+    "image": "./images/thar.png"
+  },
+  {
+    "name": "Nexon EV",
+    "brand": "Tata",
+    "price": "₹15,499",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "status": "RENTED",
+    "image": "./images/tata-nexon.png"
+  },
+  {
+    "name": "Brezza",
+    "brand": "Maruti Suzuki",
+    "price": "₹18,499",
+    "seats": 5,
+    "transmission": "Manual",
+    "status": "AVAILABLE",
+    "fuel": "Petrol",
+    "image": "./images/breeza-ms.png"
+  },
+  {
+    "name": "Creta",
+    "brand": "Hyundai",
+    "price": "₹10,299",
+    "seats": 5,
+    "transmission": "Manual",
+    "fuel": "Diesel",
+    "status": "AVAILABLE",
+    "image": "./images/creta.png"
+  },
+  {
+    "name": "GLK",
+    "brand": "Mercedes-Benz",
+    "price": "₹36,599",
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Diesel",
+    "status": "AVAILABLE",
+    "image": "./images/benz.png"
+  },
+  {
+    "name": "Swift",
+    "brand": "Maruti Suzuki",
+    "price": "₹1,599",
+    "seats": 5,
+    "transmission": "Manual",
+    "fuel": "Petrol",
+    "status": "PENDING",
+    "image": "./images/swiftcc.png"
+  }
+]
