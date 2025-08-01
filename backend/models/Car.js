@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Car = sequelize.define('Car', {
+  return sequelize.define('Car', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,13 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-  },
-    {
-      tableName: "cars",
-      timestamps: true,
-    }
-  );
-
-  return Car;
+  }, {
+    tableName: "cars",
+    timestamps: true,
+  });
 };
 

@@ -5,7 +5,7 @@ const {
   createCar,
   updateCar,
   deleteCar
-} = require('../controllers/car.controller');
+} = require('../controllers/cars');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();

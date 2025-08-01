@@ -13,10 +13,10 @@ dotenv.config({ path: `./config/config.env` });
 const { sequelize } = require('./models');
 
 // Route files
-const seeder = require('./routes/seeder');
 const car = require('./routes/car');
-const users = require('./routes/user');
+const users = require('./routes/users');
 const auth = require('./routes/auth');
+const rent = require("./routes/ordercar")
 
 
 
@@ -50,7 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/api/v1/cars", car)
 app.use('/api/v1/users', users);
 app.use('/api/v1/auth', auth);
-app.use('/api/v1/seed', seeder);
+app.use('/api/v1/rent', rent);
+
 
 
 

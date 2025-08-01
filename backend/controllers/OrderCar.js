@@ -7,7 +7,10 @@ const { OrderCar, User, Car } = require('../models');
 // @access    Private
 exports.getOrderCars = asyncHandler(async (req, res, next) => {
   const orders = await OrderCar.findAll({
-    include: [User, Car]
+    include: [
+      { model: User, as: 'user' },
+      { model: Car, as: 'car' },
+    ],
   });
   res.status(200).json({ success: true, data: orders });
 });

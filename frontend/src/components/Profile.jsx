@@ -1,78 +1,129 @@
-import React, { useState } from 'react';
-import './Profile.css';
-import illustration from '../assets/profileresetillu.jpg'; // Make sure this image exists
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import illustration from '../assets/profileresetillu.jpg'; // ensure this exists
 
 const Profile = () => {
-  const [form, setForm] = useState({
-    fullName: '',
-    email: '',
-    contactNumber: '',
-    password: '',
-    confirmPassword: ''
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleReset = () => {
-    setForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
       fullName: '',
       email: '',
       contactNumber: '',
       password: '',
-      confirmPassword: ''
-    });
+      confirmPassword: '',
+    },
+  });
+
+  const onSubmit = (data) => {
+    console.log('Form Submitted:', data);
   };
 
   return (
-    <div className="profile-wrapper">
-      <div className="profile-container">
-        <div className="profile-form">
-          <h2>Edit Profile</h2>
-          <form>
+    <div className="min-h-screen flex items-center justify-center bg-[#e6f3f2] px-4">
+      <div className="flex max-w-5xl w-full bg-white rounded-xl shadow-lg p-10 gap-10">
+        {/* Form Section */}
+        <div className="flex-1">
+          <h2 className="text-3xl font-semibold text-[#009689] mb-8">Edit Profile</h2>
+          <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              name="fullName"
               placeholder="Full Name"
-              value={form.fullName}
-              onChange={handleChange}
+              {...register('fullName', { required: 'Full Name is required' })}
+              className={`px-4 py-3 border rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-[#009689] ${errors.fullName ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
+            {errors.fullName && (
+              <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+            )}
+
             <input
               type="email"
-              name="email"
               placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: 'Invalid email address',
+                },
+              })}
+              className={`px-4 py-3 border rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-[#009689] ${errors.email ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+
             <input
               type="text"
-              name="contactNumber"
               placeholder="Contact Number"
-              value={form.contactNumber}
-              onChange={handleChange}
+              {...register('contactNumber', {
+                required: 'Contact Number is required',
+                minLength: { value: 6, message: 'Too short' },
+              })}
+              className={`px-4 py-3 border rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-[#009689] ${errors.contactNumber ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
+            {errors.contactNumber && (
+              <p className="text-red-500 text-sm">{errors.contactNumber.message}</p>
+            )}
+
             <input
               type="password"
-              name="password"
               placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
+              {...register('password', {
+                required: 'Password is required',
+                minLength: { value: 6, message: 'Minimum length is 6' },
+              })}
+              className={`px-4 py-3 border rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-[#009689] ${errors.password ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+
             <input
               type="password"
-              name="confirmPassword"
               placeholder="Confirm Password"
-              value={form.confirmPassword}
-              onChange={handleChange}
+              {...register('confirmPassword', {
+                required: 'Please confirm your password',
+                validate: (value, formValues) =>
+                  value === formValues.password || 'Passwords do not match',
+              })}
+              className={`px-4 py-3 border rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-[#009689] ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
-            <button type="button" className="reset-button" onClick={handleReset}>
-              Reset Profile
-            </button>
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>
+            )}
+
+            <div className="flex gap-4 mt-4">
+              <button
+                type="submit"
+                className="bg-[#009689] hover:bg-[#007e73] text-white font-semibold py-3 rounded-md transition flex-1"
+              >
+                Save Profile
+              </button>
+              <button
+                type="button"
+                onClick={() => reset()}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-md transition flex-1"
+              >
+                Reset Profile
+              </button>
+            </div>
           </form>
         </div>
-        <div className="profile-illustration">
-          <img src={illustration} alt="Profile Reset Illustration" />
+
+        <div className="flex-1 flex items-center justify-center">
+          <img
+            src={illustration}
+            alt="Profile Reset Illustration"
+            className="max-w-full h-auto rounded-lg shadow-md"
+          />
         </div>
       </div>
     </div>
@@ -80,3 +131,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

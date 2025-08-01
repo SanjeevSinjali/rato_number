@@ -43,6 +43,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/auth/users
 // @access    Private/Admin
 exports.createUser = asyncHandler(async (req, res, next) => {
+  console.log(req.body)
   const user = await User.create(req.body);
   const user_data = user.toJSON()
   delete user_data.password
